@@ -1,4 +1,4 @@
-# MediatekDocuments
+![image](https://github.com/user-attachments/assets/585d07c0-4119-4d9e-8911-2806e5f630bb)# MediatekDocuments
 Cette application permet de gérer les documents (livres, DVD, revues) d'une médiathèque. Elle a été codée en C# sous Visual Studio 2019. C'est une application de bureau, prévue d'être installée sur plusieurs postes accédant à la même base de données.<br>
 L'application exploite une API REST pour accéder à la BDD MySQL. Des explications sont données plus loin, ainsi que le lien de récupération.
 ## Présentation
@@ -12,6 +12,7 @@ Lors du lancement, l’application affiche une fenêtre de connexion. Il est né
 - Les utilisateurs du service prêts ont un accès restreint au catalogue uniquement  
 - Les utilisateurs du service culture ne peuvent pas accéder à l’application ; un message d’erreur est affiché et l'application se ferme automatiquement
 Après authentification, si l’utilisateur appartient au service administratif, une fenêtre s’affiche listant les abonnements arrivant prochainement à expiration. Une fois cette alerte validée, l’application affiche le catalogue. Les autres utilisateurs accèdent directement au catalogue, sans accès à la gestion des commandes.
+![image3](https://github.com/user-attachments/assets/51f17c1e-78db-4d21-befd-b30df3a94b71)
 ### Onglet 1 : Livres
 Cet onglet présente la liste des livres, triée par défaut sur le titre.<br>
 La liste comporte les informations suivantes : titre, auteur, collection, genre, public, rayon.
@@ -56,6 +57,7 @@ Si le numéro de la parution existe déjà, il n’est pas ajouté et un message
 Dans chaque onglet du catalogue (livres, DVD, revues), un bouton « Gérer les commandes » est situé en haut à droite. Un clic sur ce bouton ouvre une nouvelle fenêtre dédiée à la gestion des commandes. L’onglet affiché par défaut dépend de la section d’origine. Par exemple, si vous étiez sur l’onglet DVD, l’onglet de commande correspondant s’ouvrira automatiquement. Il est ensuite possible de naviguer entre les types de commandes via les onglets disponibles. Cette fenêtre comporte 3 onglets distinct, Livre, DVD et revues qui permet de gérer les commandes de chacuns des types de produit.
 ### Accès à la gestion des commandes  
 Dans chaque onglet du catalogue (livres, DVD, revues), un bouton « Gérer les commandes » est situé en haut à droite. Un clic sur ce bouton ouvre une nouvelle fenêtre dédiée à la gestion des commandes. L’onglet affiché par défaut dépend de la section d’origine. Par exemple, si vous étiez sur l’onglet DVD, l’onglet de commande correspondant s’ouvrira automatiquement. Il est ensuite possible de naviguer entre les types de commandes via les onglets disponibles.<br>
+![image4](https://github.com/user-attachments/assets/b266a01b-43ea-4e1f-a9b7-4b300de9bfeb)
 La fenêtre de gestion des commandes comporte trois onglets distincts :  
 - Livres  
 - DVD  
@@ -80,6 +82,7 @@ Pour modifier une commande existante, sélectionnez-la dans la liste puis clique
 Les transitions entre statuts sont encadrées : une commande livrée ne peut plus repasser à un état antérieur. Une fois réglée, la commande est considérée comme définitive.
 ### Supprimer une commande  
 Une commande peut être supprimée tant qu’elle n’a pas atteint le statut « Livrée ». Passé ce stade, la suppression n’est plus autorisée.
+![image5](https://github.com/user-attachments/assets/686feb0d-15b3-4a14-a9de-27e8f04a5441)
 ### Commandes de revues (abonnements)  
 La gestion des abonnements se fait depuis l’onglet « Revues » de la fenêtre de gestion des commandes. L’interface est composée de quatre parties :  
 - Recherche de revue  
@@ -92,6 +95,7 @@ Saisissez le numéro de la revue puis cliquez sur « Rechercher ». Si elle exis
 Cliquez sur « Nouvel abonnement/renouvellement ». La zone d’édition devient active. Renseignez la date de début, la date de fin, et le montant. La date de début doit être antérieure à la date de fin. Cliquez sur « Valider l’opération » pour enregistrer l’abonnement. En cas d’erreur, utilisez le bouton « Annuler l’opération ».<br>
 ### Supprimer un abonnement  
 Un abonnement ne peut être supprimé que s’il n’est associé à aucune parution (aucun exemplaire reçu pendant sa période de validité). Dans le cas contraire, l’option de suppression est désactivée.<br>
+![image6](https://github.com/user-attachments/assets/08ee6fe7-eb52-4e41-85d3-d70eb40c13ca)
 ## La base de données
 La base de données 'mediatek86 ' est au format MySQL.<br>
 Voici sa structure :<br>
