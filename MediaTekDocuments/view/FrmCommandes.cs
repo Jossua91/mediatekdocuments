@@ -927,7 +927,7 @@ namespace MediaTekDocuments.view
         private void btnCommandeDvdSupprimer_Click(object sender, EventArgs e)
         {
             CommandeDocument commandeSelected = (CommandeDocument)bdgCommandesDocument.List[bdgCommandesDocument.Position];
-            if (commandeSelected.IdSuivi != ENCOURS || commandeSelected.IdSuivi != RELANCEE)
+            if (commandeSelected.IdSuivi != ENCOURS && commandeSelected.IdSuivi != RELANCEE)
             {
                 MessageBox.Show("Impossible de supprimer une commande déjà livrée", "Erreur", MessageBoxButtons.OK);
             }

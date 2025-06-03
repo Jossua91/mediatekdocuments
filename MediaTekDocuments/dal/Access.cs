@@ -22,7 +22,8 @@ namespace MediaTekDocuments.dal
         /// <summary>
         /// adresse de l'API
         /// </summary>
-        private static readonly string uriApi = "https://api-mediatekdocuments.jossua-creuzet.fr/";
+        //private static readonly string uriApi = "https://api-mediatekdocuments.jossua-creuzet.fr/";
+        private static readonly string uriApi = "https://mediatekdocuments.lynx-v.com/";
         /// <summary>
         /// instance unique de la classe
         /// </summary>
