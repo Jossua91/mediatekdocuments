@@ -2,10 +2,16 @@
 Cette application permet de gérer les documents (livres, DVD, revues) d'une médiathèque. Elle a été codée en C# sous Visual Studio 2019. C'est une application de bureau, prévue d'être installée sur plusieurs postes accédant à la même base de données.<br>
 L'application exploite une API REST pour accéder à la BDD MySQL. Des explications sont données plus loin, ainsi que le lien de récupération.
 ## Présentation
-Actuellement l'application est partiellement codée. Voici les fonctionnalités actuellement opérationnelles : recherches et affichage d'informations sur les documents de la médiathèque (livres, DVD, revues), réception de nouveaux numéros de revues.<br>
-![img1](https://github.com/CNED-SLAM/MediaTekDocuments/assets/100127886/9b5a4c1b-6914-4455-94bf-fec24adba3ec)
-<br>L'application ne comporte qu'une seule fenêtre divisée en plusieurs onglets.
+![image](https://github.com/user-attachments/assets/6fa4c93c-024e-4b96-978c-ea2a4b662112)
+## Installation
+Pour utiliser l’application, téléchargez le fichier d’installation 'MediaTekDocuments/publish/setup.exe' disponible dans ce dépôt. Exécutez-le, puis suivez les étapes indiquées par l’assistant. Une fois l’installation terminée, vous pouvez accéder à l’application.
 ## Les différents onglets
+### Connexion  
+Lors du lancement, l’application affiche une fenêtre de connexion. Il est nécessaire de s’authentifier avec un identifiant et un mot de passe. L’accès aux fonctionnalités est déterminé selon le service de l’utilisateur :  
+- L’administrateur et les utilisateurs du service administratif disposent de tous les droits (accès complet au catalogue et aux commandes)
+- Les utilisateurs du service prêts ont un accès restreint au catalogue uniquement  
+- Les utilisateurs du service culture ne peuvent pas accéder à l’application ; un message d’erreur est affiché et l'application se ferme automatiquement
+Après authentification, si l’utilisateur appartient au service administratif, une fenêtre s’affiche listant les abonnements arrivant prochainement à expiration. Une fois cette alerte validée, l’application affiche le catalogue. Les autres utilisateurs accèdent directement au catalogue, sans accès à la gestion des commandes.
 ### Onglet 1 : Livres
 Cet onglet présente la liste des livres, triée par défaut sur le titre.<br>
 La liste comporte les informations suivantes : titre, auteur, collection, genre, public, rayon.
@@ -46,10 +52,50 @@ Il est possible alors de réceptionner une nouvelle parution en saisissant son n
 Le clic sur "Valider la réception" va permettre d'ajouter un tuple dans la table Exemplaire de la BDD. La parution correspondante apparaitra alors automatiquement dans la liste des parutions et les zones de la partie "Nouvelle parution réceptionnée pour cette revue" seront réinitialisées.<br>
 Si le numéro de la parution existe déjà, il n’est pas ajouté et un message est affiché.
 ![img3](https://github.com/CNED-SLAM/MediaTekDocuments/assets/100127886/225e10f2-406a-4b5e-bfa9-368d45456056)
+## Gestion des commandes
+Dans chaque onglet du catalogue (livres, DVD, revues), un bouton « Gérer les commandes » est situé en haut à droite. Un clic sur ce bouton ouvre une nouvelle fenêtre dédiée à la gestion des commandes. L’onglet affiché par défaut dépend de la section d’origine. Par exemple, si vous étiez sur l’onglet DVD, l’onglet de commande correspondant s’ouvrira automatiquement. Il est ensuite possible de naviguer entre les types de commandes via les onglets disponibles. Cette fenêtre comporte 3 onglets distinct, Livre, DVD et revues qui permet de gérer les commandes de chacuns des types de produit.
+### Accès à la gestion des commandes  
+Dans chaque onglet du catalogue (livres, DVD, revues), un bouton « Gérer les commandes » est situé en haut à droite. Un clic sur ce bouton ouvre une nouvelle fenêtre dédiée à la gestion des commandes. L’onglet affiché par défaut dépend de la section d’origine. Par exemple, si vous étiez sur l’onglet DVD, l’onglet de commande correspondant s’ouvrira automatiquement. Il est ensuite possible de naviguer entre les types de commandes via les onglets disponibles.<br>
+La fenêtre de gestion des commandes comporte trois onglets distincts :  
+- Livres  
+- DVD  
+- Revues
+### Commandes de livres ou de DVD  
+Le fonctionnement des commandes pour les livres et les DVD étant similaire, seule la gestion des livres est présentée ici à titre d’exemple. <br>
+L’interface de commande se divise en quatre zones :  
+- Saisie du numéro de document  
+- Affichage des informations détaillées du document  
+- Liste des commandes existantes pour ce document  
+- Zone d’édition pour la création ou la modification d’une commande
+### Rechercher un document  
+Renseignez le numéro du document dans la zone prévue, puis cliquez sur « Rechercher ». Si le document est trouvé, ses informations sont affichées, ainsi que les commandes qui lui sont associées.
+### Ajouter une commande 
+Cliquez sur « Créer une commande » après avoir sélectionné un document. La zone d’édition devient alors active. Saisissez la date, le montant, et le nombre d’exemplaires. Par défaut, une nouvelle commande est au statut « En cours ». Cliquez sur « Valider la modification » pour enregistrer la commande. Il est possible d’annuler l’opération à tout moment via le bouton « Annuler la modification ».
+### Modifier une commande  
+Pour modifier une commande existante, sélectionnez-la dans la liste puis cliquez sur « Modifier la commande ». Vous pouvez alors ajuster les informations, y compris le statut. Les statuts possibles sont :  
+- En cours  
+- Relancée  
+- Livrée  
+- Réglée
+Les transitions entre statuts sont encadrées : une commande livrée ne peut plus repasser à un état antérieur. Une fois réglée, la commande est considérée comme définitive.
+### Supprimer une commande  
+Une commande peut être supprimée tant qu’elle n’a pas atteint le statut « Livrée ». Passé ce stade, la suppression n’est plus autorisée.
+### Commandes de revues (abonnements)  
+La gestion des abonnements se fait depuis l’onglet « Revues » de la fenêtre de gestion des commandes. L’interface est composée de quatre parties :  
+- Recherche de revue  
+- Informations détaillées de la revue  
+- Liste des abonnements  
+- Zone d’édition d’un abonnement
+### Rechercher une revue  
+Saisissez le numéro de la revue puis cliquez sur « Rechercher ». Si elle existe, ses informations s’affichent, ainsi que les exemplaires et les abonnements associés.<br>
+### Ajouter un abonnement ou un renouvellement  
+Cliquez sur « Nouvel abonnement/renouvellement ». La zone d’édition devient active. Renseignez la date de début, la date de fin, et le montant. La date de début doit être antérieure à la date de fin. Cliquez sur « Valider l’opération » pour enregistrer l’abonnement. En cas d’erreur, utilisez le bouton « Annuler l’opération ».<br>
+### Supprimer un abonnement  
+Un abonnement ne peut être supprimé que s’il n’est associé à aucune parution (aucun exemplaire reçu pendant sa période de validité). Dans le cas contraire, l’option de suppression est désactivée.<br>
 ## La base de données
 La base de données 'mediatek86 ' est au format MySQL.<br>
 Voici sa structure :<br>
-![img4](https://github.com/CNED-SLAM/MediaTekDocuments/assets/100127886/4314f083-ec8b-4d27-9746-fecd1387d77b)
+![image2](https://github.com/user-attachments/assets/bad5a602-283a-4801-a63b-b13efc664945)
 <br>On distingue les documents "génériques" (ce sont les entités Document, Revue, Livres-DVD, Livre et DVD) des documents "physiques" qui sont les exemplaires de livres ou de DVD, ou bien les numéros d’une revue ou d’un journal.<br>
 Chaque exemplaire est numéroté à l’intérieur du document correspondant, et a donc un identifiant relatif. Cet identifiant est réel : ce n'est pas un numéro automatique. <br>
 Un exemplaire est caractérisé par :<br>
