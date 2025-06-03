@@ -11,7 +11,7 @@ Lors du lancement, l’application affiche une fenêtre de connexion. Il est né
 - L’administrateur et les utilisateurs du service administratif disposent de tous les droits (accès complet au catalogue et aux commandes)
 - Les utilisateurs du service prêts ont un accès restreint au catalogue uniquement  
 - Les utilisateurs du service culture ne peuvent pas accéder à l’application ; un message d’erreur est affiché et l'application se ferme automatiquement
-Après authentification, si l’utilisateur appartient au service administratif, une fenêtre s’affiche listant les abonnements arrivant prochainement à expiration. Une fois cette alerte validée, l’application affiche le catalogue. Les autres utilisateurs accèdent directement au catalogue, sans accès à la gestion des commandes.
+Après authentification, si l’utilisateur appartient au service administratif, une fenêtre s’affiche listant les abonnements arrivant prochainement à expiration. Une fois cette alerte validée, l’application affiche le catalogue. Les autres utilisateurs accèdent directement au catalogue, sans accès à la gestion des commandes.<br>
 ![image3](https://github.com/user-attachments/assets/51f17c1e-78db-4d21-befd-b30df3a94b71)
 ### Onglet 1 : Livres
 Cet onglet présente la liste des livres, triée par défaut sur le titre.<br>
